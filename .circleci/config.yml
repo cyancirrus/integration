@@ -1,20 +1,17 @@
 version: 2
+
 jobs:
   build:
-    working_directory: ~/template_project
     docker:
-      # - image: circleci/python:3.9
       - image: circleci/python:3.9
-        # auth:
-        #   username: cyan
-        #   passowrd: 
     steps:
       - checkout
       - run:
+          name: create venv and install depenencies
           command: |
             python3 -m venv venv
             . venv/bin/active
-            pip install -r venv/requirements.txt
+            pip install -r requirements.txt
       - run:
           command: |
             pytest template
